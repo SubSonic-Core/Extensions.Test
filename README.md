@@ -1,1 +1,1 @@
-# Extensions.Test
+# SubSonic.Core.Extensions.Test
