@@ -9,6 +9,6 @@ namespace SubSonic.Extensions.Test
     public static class DbProviderInvariantNames
     {
         public static string MockDbProviderInvariantName => typeof(MockDbClientFactory).Namespace;
-        public static string SqlServiceDbProviderInvariantName => "System.Data.SqlClient";
+        public static string SqlServiceDbProviderInvariantName => "Microsoft.Data.SqlClient";
     }
 }

@@ -7,7 +7,7 @@ using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace SubSonic.Extensions.Test.MockDbClient
 {
