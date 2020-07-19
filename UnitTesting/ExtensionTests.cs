@@ -3,6 +3,7 @@ using NUnit.Framework;
 using SubSonic.Extensions.Test.Models;
 using System.Collections.Generic;
 using System.Data;
+using UnitTesting.SubSonicHelper.Classes;
 
 namespace SubSonic.Extensions.Test
 {
@@ -17,11 +18,16 @@ namespace SubSonic.Extensions.Test
         [Test]
         public void CanTransformEnumberableIntoDataTable()
         {
-            List<Person> list = new List<Person>();
+            List<RenterView> list = new List<RenterView>()
+            { 
+                new RenterView() { PersonID = 1, FullName = "Test", UnitID = 1}
+            };
 
             DataTable data = list.ToDataTable();
 
-            data.Columns[nameof(Person.ID)].Should().NotBeNull();
+            data.Columns[nameof(RenterView.PersonID)].Should().NotBeNull();
+
+            data.Dispose();
         }
     }
 }

@@ -136,8 +136,10 @@ namespace SubSonic.Extensions.Test
                         continue;
                     }
 
+                    string name = model?[property.Name].Name ?? property.Name;
+
                     builder.AddColumn(
-                        model?[property.Name].Name ?? property.Name, 
+                        name, 
                         property.PropertyType);
                 }
 
@@ -163,14 +165,16 @@ namespace SubSonic.Extensions.Test
                     {
                         DataRow row = builder.CreateRow();
 
-                        foreach (IDbEntityProperty property in model.Properties)
+                        foreach (PropertyInfo property in entityType.GetProperties())
                         {
-                            if (property.EntityPropertyType == DbEntityPropertyType.Value)
+                            if (model != null && model[property.Name].EntityPropertyType != DbEntityPropertyType.Value)
                             {
-                                row[property.Name] = model.EntityModelType
-                                    .GetProperty(property.PropertyName)
-                                    .GetValue(entity) ?? DBNull.Value;
+                                continue;
                             }
+
+                            row[property.Name] = entityType
+                                    .GetProperty(property.Name)
+                                    .GetValue(entity) ?? DBNull.Value;
                         }
 
                         builder.AddRow(row);
