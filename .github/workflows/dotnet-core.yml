@@ -11,7 +11,7 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      VERSION: 4.2.1-beta.3
+      VERSION: 4.2.1-beta.4
 
     steps:
     - uses: actions/checkout@v2
@@ -23,6 +23,8 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --configuration Release --no-restore
+    - name: Testing
+      run: dotnet test
     - name: Create Packages
       run: dotnet pack --configuration Release --output ../nupkgs -p:PackageVersion=${{env.VERSION}}
     - name: Deploy Package Nuget
