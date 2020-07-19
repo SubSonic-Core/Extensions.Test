@@ -12,6 +12,8 @@ namespace SubSonic.Extensions.Test
     using Linq;
     using Schema;
     using System.Globalization;
+    using System.Collections;
+    using System.Reflection;
 
     public static partial class SubSonicTestExtensions
     {
@@ -113,21 +115,30 @@ namespace SubSonic.Extensions.Test
             }
         }
 
-        public static DataTable ToDataTable(this IDbEntityModel model)
+        public static DataTable ToDataTable(this IEnumerable source, Type entityType, IDbEntityModel model)
         {
-            if (model is null)
+            if (source is null)
             {
-                throw new ArgumentNullException(nameof(model));
+                throw Error.ArgumentNull(nameof(entityType));
             }
 
-            using (DataTableBuilder builder = new DataTableBuilder(model.Name))
+            if (entityType is null)
             {
-                foreach (IDbEntityProperty property in model.Properties)
+                throw Error.ArgumentNull(nameof(entityType));
+            }
+
+            using (DataTableBuilder builder = new DataTableBuilder(model?.Name ?? entityType.Name))
+            {
+                foreach (PropertyInfo property in entityType.GetProperties())
                 {
-                    if (property.EntityPropertyType == DbEntityPropertyType.Value)
+                    if (model != null && model[property.Name].EntityPropertyType != DbEntityPropertyType.Value)
                     {
-                        builder.AddColumn(property.Name, property.PropertyType);
+                        continue;
                     }
+
+                    builder.AddColumn(
+                        model?[property.Name].Name ?? property.Name, 
+                        property.PropertyType);
                 }
 
                 return builder.DataTable;
@@ -141,9 +152,12 @@ namespace SubSonic.Extensions.Test
                 throw new ArgumentNullException(nameof(source));
             }
 
-            if (SubSonicContext.DbModel.TryGetEntityModel<TEntity>(out IDbEntityModel model))
-            {
-                using (DataTableBuilder builder = new DataTableBuilder(model.ToDataTable()))
+            Type entityType = typeof(TEntity);
+            SubSonicContext.DbModel.TryGetEntityModel<TEntity>(out IDbEntityModel model);
+
+            if (entityType.IsClass)
+            { 
+                using (DataTableBuilder builder = new DataTableBuilder(source.ToDataTable(entityType, model)))
                 {
                     foreach (TEntity entity in source)
                     {
