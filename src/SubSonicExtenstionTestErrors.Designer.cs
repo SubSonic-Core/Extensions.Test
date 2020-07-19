@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SubSonic.Extensions.Test {
+namespace SubSonic.Extensions.Test.src {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace SubSonic.Extensions.Test {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SubSonic.Extensions.Test.SubSonicExtenstionTestErrors", typeof(SubSonicExtenstionTestErrors).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SubSonic.Extensions.Test.src.SubSonicExtenstionTestErrors", typeof(SubSonicExtenstionTestErrors).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

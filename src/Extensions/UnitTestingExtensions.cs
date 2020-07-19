@@ -6,6 +6,7 @@ using System.Linq;
 
 namespace SubSonic.Extensions.Test
 {
+    using src;
     using Data.Builders;
     using Extensions.Test.MockDbClient.Syntax;
     using Linq;
