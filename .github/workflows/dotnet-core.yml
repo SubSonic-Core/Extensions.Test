@@ -29,5 +29,3 @@ jobs:
       run: dotnet pack --configuration Release --output ../nupkgs -p:PackageVersion=${{env.VERSION}} --include-symbols --include-source
     - name: Deploy Package Nuget
       run: dotnet nuget push -k ${{secrets.NUGET_API_TOKEN}} -s https://api.nuget.org/v3/index.json ../nupkgs/*.${{env.VERSION}}.nupkg --skip-duplicate
-    - name: Deploy Symbol Package Nuget
-      run: dotnet nuget push -k ${{secrets.NUGET_API_TOKEN}} -s https://api.nuget.org/v3/index.json ../nupkgs/*.${{env.VERSION}}.snupkg --skip-duplicate
