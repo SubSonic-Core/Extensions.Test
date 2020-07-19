@@ -11,7 +11,7 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      VERSION: 4.2.1-beta.4
+      VERSION: 4.2.1-beta.5
 
     steps:
     - uses: actions/checkout@v2
