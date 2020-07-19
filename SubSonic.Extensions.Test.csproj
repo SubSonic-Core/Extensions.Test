@@ -34,8 +34,11 @@
 
   <ItemGroup>
     <Compile Remove="MockSqlQueryProvider\**" />
+    <Compile Remove="UnitTesting\**" />
     <EmbeddedResource Remove="MockSqlQueryProvider\**" />
+    <EmbeddedResource Remove="UnitTesting\**" />
     <None Remove="MockSqlQueryProvider\**" />
+    <None Remove="UnitTesting\**" />
     <None Include="LICENSE.md">
       <Pack>True</Pack>
       <PackagePath></PackagePath>

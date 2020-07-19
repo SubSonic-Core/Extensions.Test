@@ -153,7 +153,7 @@ namespace SubSonic.Extensions.Test
             }
 
             Type entityType = typeof(TEntity);
-            SubSonicContext.DbModel.TryGetEntityModel<TEntity>(out IDbEntityModel model);
+            SubSonicContext.DbModel.TryGetEntityModel(entityType, out IDbEntityModel model);
 
             if (entityType.IsClass)
             { 
