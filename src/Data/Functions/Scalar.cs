@@ -1,4 +1,5 @@
 ﻿using System;
+using SubSonic.src;
 
 namespace SubSonic.Extensions.Test.Data.Functions
 {

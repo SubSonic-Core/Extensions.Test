@@ -80,7 +80,11 @@ namespace SubSonic.Extensions.Test
                 }
                 else
                 {
+#if NETSTANDARD2_0
                     return default(TType);
+#elif NETSTANDARD2_1
+                    return default;
+#endif
                 }
             }
             else
@@ -93,7 +97,11 @@ namespace SubSonic.Extensions.Test
         {
             if (value is DBNull)
             {
+#if NETSTANDARD2_0
                 return default(TType);
+#elif NETSTANDARD2_1
+                return default;
+#endif
             }
             else if (value is TType result)
             {
@@ -221,7 +229,11 @@ namespace SubSonic.Extensions.Test
                 return db.RecievedBehavior(command);
             }
 
+#if NETSTANDARD2_0
             return default(int);
+#elif NETSTANDARD2_1
+            return default;
+#endif
         }
 
         public static void AddCommandBehavior<TEntity>(this DbProviderFactory factory, string command, IEnumerable<TEntity> entities)

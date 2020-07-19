@@ -2,6 +2,7 @@
 
 using System;
 using System.Reflection;
+using SubSonic.src;
 
 namespace SubSonic.Extensions.SqlServer
 {
