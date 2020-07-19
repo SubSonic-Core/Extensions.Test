@@ -11,7 +11,7 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      VERSION: 4.2.1-beta.3
+      VERSION: 4.2.1-beta.4
 
     steps:
     - uses: actions/checkout@v2
@@ -23,7 +23,11 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --configuration Release --no-restore
+    - name: Testing
+      run: dotnet test
     - name: Create Packages
-      run: dotnet pack --configuration Release --output ../nupkgs -p:PackageVersion=${{env.VERSION}}
+      run: dotnet pack --configuration Release --output ../nupkgs -p:PackageVersion=${{env.VERSION}} --include-symbols --include-source
     - name: Deploy Package Nuget
-      run: dotnet nuget push -k ${{secrets.NUGET_API_TOKEN}} -s https://www.nuget.org ../nupkgs/*.${{env.VERSION}}.nupkg --skip-duplicate
+      run: dotnet nuget push -k ${{secrets.NUGET_API_TOKEN}} -s https://api.nuget.org/v3/index.json ../nupkgs/*.${{env.VERSION}}.nupkg --skip-duplicate
+    - name: Deploy Symbol Package Nuget
+      run: dotnet nuget push -k ${{secrets.NUGET_API_TOKEN}} -s https://api.nuget.org/v3/index.json ../nupkgs/*.${{env.VERSION}}.snupkg --skip-duplicate
