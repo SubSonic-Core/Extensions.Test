@@ -16,7 +16,7 @@ namespace SubSonic.Extensions.Test
         }
 
         [Test]
-        public void CanTransformEnumberableIntoDataTable()
+        public void CanTransformEnumberableIntoDataTableForNonEntity()
         {
             List<RenterView> list = new List<RenterView>()
             { 
@@ -26,6 +26,21 @@ namespace SubSonic.Extensions.Test
             DataTable data = list.ToDataTable();
 
             data.Columns[nameof(RenterView.PersonID)].Should().NotBeNull();
+
+            data.Dispose();
+        }
+
+        [Test]
+        public void CanTransformEnumberableIntoDataTableForEntity()
+        {
+            List<Unit> list = new List<Unit>()
+            {
+                new Unit() { ID = 1, NumberOfBedrooms = 1, RealEstatePropertyID = 1, StatusID = 1 }
+            };
+
+            DataTable data = list.ToDataTable();
+
+            data.Columns["Bedrooms"].Should().NotBeNull();
 
             data.Dispose();
         }

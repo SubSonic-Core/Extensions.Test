@@ -16,6 +16,8 @@ namespace SubSonic.Extensions.Test
 
         }
 
+        public ISubSonicSetCollection<Models.Unit> Units { get; private set; }
+
         protected override void OnDbConfiguring(DbContextOptionsBuilder config)
         {
             config
@@ -28,6 +30,11 @@ namespace SubSonic.Extensions.Test
                         .SetInitialCatalog("test")
                         .SetIntegratedSecurity(true);
                 });
+        }
+
+        protected override void OnDbModeling(DbModelBuilder builder)
+        {
+            builder.AddEntityModel<Models.Unit>();
         }
     }
 }

@@ -136,10 +136,8 @@ namespace SubSonic.Extensions.Test
                         continue;
                     }
 
-                    string name = model?[property.Name].Name ?? property.Name;
-
                     builder.AddColumn(
-                        name, 
+                        model?[property.Name].Name ?? property.Name, 
                         property.PropertyType);
                 }
 
@@ -172,7 +170,7 @@ namespace SubSonic.Extensions.Test
                                 continue;
                             }
 
-                            row[property.Name] = entityType
+                            row[model?[property.Name].Name ?? property.Name] = entityType
                                     .GetProperty(property.Name)
                                     .GetValue(entity) ?? DBNull.Value;
                         }
