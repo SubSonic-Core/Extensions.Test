@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data;
 using System.Data.Common;
+using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace SubSonic.Extensions.Test.MockDbClient
 {
+    using src.MockDbClient;
     using Syntax;
-    using System.Globalization;
 
     public sealed class MockDbClientFactory : DbProviderFactory, IMockCommandExecution
     {

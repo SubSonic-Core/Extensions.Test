@@ -7,6 +7,7 @@ using System.Data;
 
 namespace SubSonic.Extensions.Test.MockDbClient
 {
+    using src.MockDbClient;
     public class MockDbConnection : DbConnection
     {
         readonly IMockCommandExecution exec;
