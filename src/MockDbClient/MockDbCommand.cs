@@ -11,6 +11,8 @@ using Microsoft.Data.SqlClient;
 
 namespace SubSonic.Extensions.Test.MockDbClient
 {
+    using src.MockDbClient;
+
     public class MockDbCommand : DbCommand
     {
         readonly IMockCommandExecution _exec;

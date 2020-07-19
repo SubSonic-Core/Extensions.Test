@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SubSonic.Extensions.Test.MockDbClient {
+namespace SubSonic.Extensions.Test.src.MockDbClient {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace SubSonic.Extensions.Test.MockDbClient {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SubSonic.Extensions.Test.MockDbClient.MockDBErrors", typeof(MockDBErrors).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SubSonic.Extensions.Test.src.MockDbClient.MockDBErrors", typeof(MockDBErrors).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
