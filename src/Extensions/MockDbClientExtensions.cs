@@ -28,9 +28,7 @@ namespace SubSonic.Extensions.Test
                     .AddSingleton<IServiceCollection, ServiceCollection>(provider => (ServiceCollection)SubSonicRigging.Services);
             }
 
-            builder.SetServiceProvider(SubSonicRigging.Services.BuildServiceProvider());
-
-            return builder;
+            return builder.SetServiceProvider(SubSonicRigging.Services.BuildServiceProvider());
         }
 
         public static DbContextOptionsBuilder AddLogging(this DbContextOptionsBuilder builder, Action<ILoggingBuilder> configure)
